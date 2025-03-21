@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres
+    networks:
+      - general
+    container_name: webapp_db
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+  migrate:
+    build:
+      context: .
+      dockerfile: migrate.Dockerfile
+    networks:
+      - general
+    container_name: webapp_migrate
+    depends_on:
+      - db
+    env_file:
+      - .env
+  api:
+    build:
+      context: .
+    networks:
+      - general
+    container_name: webapp_api
+    restart: always
+    ports:
+      - 4000:4000
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+networks:
+  general:

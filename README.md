@@ -4,17 +4,24 @@
 
 Тестовый проект (первая часть) в компанию STARPETS. [ТЗ](https://docs.google.com/document/d/17Ao_opzaQ-mjYdUYeCcfBU6BU6NK4TTe)
 
+Выполнил: Раджабов Магомед
+
+Затраты: 3-4 часа
+
 ## Запуск
 
 Перед запуском создайте файл `.env` и настройте его как вам удобно (можно просто скопировать `.env.example`)
 
-Запуск максимально простой. Есть 2 способа 
+### Через docker
 
-### Через docker (рекомендуется)
+Для запуска введите команды:
 
-Если у вас Linux или MacOS, то просто выполните команду `make` в терминале. 
+```bash
+docker compose up -d db
+docker compose up migrate && docker compose up -d api
+```
 
-Если Windows - `docker compose up -d`
+или просто `make`
 
 ## Тестирование
 
